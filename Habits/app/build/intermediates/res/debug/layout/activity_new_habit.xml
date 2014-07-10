@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragmentContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    />
+<!-- From: file:/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/layout/activity_new_habit.xml -->

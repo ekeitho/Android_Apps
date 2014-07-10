@@ -1,0 +1,25 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 11
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "com.ekeitho.habits"
+        minSdkVersion 11
+        targetSdkVersion 15
+    }
+
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:20.0.0'
+    compile files('libs/Parse-1.5.1.jar')
+    compile 'com.nhaarman.listviewanimations:library:2.6.0'
+}

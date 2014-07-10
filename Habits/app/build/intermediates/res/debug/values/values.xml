@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/values/strings.xml -->
+    <eat-comment />
+
+    <string name="action_favorite">Favorites</string>
+    <string name="action_new">Add a Habit</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="app_name">Habits</string>
+    <string name="cancel_button_text">Cancel</string>
+    <string name="emotion">What were you feeling when you did the habit?</string>
+    <string name="habit_label">What habit are you focusing on?</string>
+    <string name="location">Where were you when you did the habit?</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_title">My Habits</string>
+    <string name="person">Who were you around when you did the habit?</string>
+    <string name="preceding">What what was your preceding action when you did the habit?</string>
+    <string name="save_button_text">Save</string>
+    <string name="time">What time was it when you did the habit?</string>
+    <string name="title_activity_meal_list">Habits</string>
+    <string name="title_activity_new_meal">NewHabitActivity</string>
+    <!-- From: file:/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/values/styles.xml -->
+    <eat-comment />
+
+    <style name="AppTheme" parent="android:Theme.Light" />
+
+</resources>

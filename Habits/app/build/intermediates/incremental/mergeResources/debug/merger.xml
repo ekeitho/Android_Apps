@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="2" >
+
+    <dataSet config="20.0.0" >
+        <source path="/Users/m652315/Desktop/Work/Android/Habits/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/res" />
+    </dataSet>
+    <dataSet config="main" >
+        <source path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res" >
+            <file
+                name="ic_action_favorite"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-hdpi/ic_action_favorite.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_new"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-hdpi/ic_action_new.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_photo"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-hdpi/ic_action_photo.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_refresh"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-hdpi/ic_action_refresh.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_search"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-hdpi/ic_action_search.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-hdpi/ic_launcher.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-ldpi/ic_launcher.png"
+                qualifiers="ldpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_favorite"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-mdpi/ic_action_favorite.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_new"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-mdpi/ic_action_new.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_photo"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-mdpi/ic_action_photo.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_refresh"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-mdpi/ic_action_refresh.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_search"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-mdpi/ic_action_search.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-mdpi/ic_launcher.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_favorite"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-xhdpi/ic_action_favorite.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_new"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-xhdpi/ic_action_new.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_photo"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-xhdpi/ic_action_photo.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_refresh"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-xhdpi/ic_action_refresh.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_action_search"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-xhdpi/ic_action_search.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/drawable-xhdpi/ic_launcher.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="activity_new_habit"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/layout/activity_new_habit.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="fragment_camera"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/layout/fragment_camera.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="fragment_new_habit"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/layout/fragment_new_habit.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="habitview"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/layout/habitview.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="item_list_favorites"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/layout/item_list_favorites.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_habit_list"
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/menu/activity_habit_list.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/values/strings.xml"
+                qualifiers="" >
+                <string name="action_favorite" >Favorites
+                </string>
+                <string name="habit_label" >What habit are you focusing on?
+                </string>
+                <string name="location" >Where were you when you did the habit?
+                </string>
+                <string name="preceding" >What what was your preceding action when you did the habit?
+                </string>
+                <string name="app_name" >Habits
+                </string>
+                <string name="action_new" >Add a Habit
+                </string>
+                <string name="person" >Who were you around when you did the habit?
+                </string>
+                <string name="action_refresh" >Refresh
+                </string>
+                <string name="cancel_button_text" >Cancel
+                </string>
+                <string name="save_button_text" >Save
+                </string>
+                <string name="menu_settings" >Settings
+                </string>
+                <string name="menu_title" >My Habits
+                </string>
+                <string name="title_activity_new_meal" >NewHabitActivity
+                </string>
+                <string name="title_activity_meal_list" >Habits
+                </string>
+                <string name="emotion" >What were you feeling when you did the habit?
+                </string>
+                <string name="time" >What time was it when you did the habit?
+                </string>
+            </file>
+            <file
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/values/styles.xml"
+                qualifiers="" >
+
+                <style
+                    name="AppTheme"
+                    parent="android:Theme.Light" />
+            </file>
+            <file
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/values-v11/styles.xml"
+                qualifiers="v11" >
+
+                <style
+                    name="AppTheme"
+                    parent="android:Theme.Holo.Light" />
+            </file>
+            <file
+                path="/Users/m652315/Desktop/Work/Android/Habits/app/src/main/res/values-v14/styles.xml"
+                qualifiers="v14" >
+
+                <style
+                    name="AppTheme"
+                    parent="android:Theme.Holo.Light" />
+            </file>
+        </source>
+        <source path="/Users/m652315/Desktop/Work/Android/Habits/app/build/generated/res/rs/debug" />
+        <source path="/Users/m652315/Desktop/Work/Android/Habits/app/build/generated/res/generated/debug" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="/Users/m652315/Desktop/Work/Android/Habits/app/src/debug/res" />
+    </dataSet>
+
+</merger>

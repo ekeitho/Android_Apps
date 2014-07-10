@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/Users/m652315/Desktop/Work/Habits/app/build/intermediates/pre-dexed/debug/library-2.4.0-d2930c5640a185218e3a5883eba610d0726c663a.jar"
+        jar="/Users/m652315/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb"/>
+    <item
+        dex="/Users/m652315/Desktop/Work/Habits/app/build/intermediates/pre-dexed/debug/classes-023d4c82ac205f36e89608b2cadcc6d58464aa5e.jar"
+        jar="/Users/m652315/Desktop/Work/Habits/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+    <item
+        dex="/Users/m652315/Desktop/Work/Habits/app/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-ea5df1169551dab3ef5cc0bbcfeb7f64e613cd79.jar"
+        jar="/Users/m652315/Desktop/Work/adt-bundle-mac-x86_64-20140321/sdk/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
+    <item
+        dex="/Users/m652315/Desktop/Work/Habits/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-4b64db42784a9e6fcc7694f81f66d7352551a9c4.jar"
+        jar="/Users/m652315/Desktop/Work/Habits/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+    <item
+        dex="/Users/m652315/Desktop/Work/Habits/app/build/intermediates/pre-dexed/debug/Parse-1.5.1-c80394abb027d535d8e1e880b03647b2a7f8b186.jar"
+        jar="/Users/m652315/Desktop/Work/Habits/app/libs/Parse-1.5.1.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="3d645417e7780d44f32e29a3ec6b729b75aef26c"/>
+    <item
+        dex="/Users/m652315/Desktop/Work/Habits/app/build/intermediates/pre-dexed/debug/library-2.6.0-5125210047ace1f1eaa5562971367abbead950fa.jar"
+        jar="/Users/m652315/.gradle/caches/modules-2/files-2.1/com.nhaarman.listviewanimations/library/2.6.0/59351ccb0a1631d30358f6a92749a072f2df7602/library-2.6.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="59351ccb0a1631d30358f6a92749a072f2df7602"/>
+
+</pre-dex-items>
