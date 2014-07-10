@@ -4,24 +4,16 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
-
 import com.nhaarman.listviewanimations.itemmanipulation.OnDismissCallback;
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
-import com.nhaarman.listviewanimations.swinginadapters.prepared.SwingRightInAnimationAdapter;
 import com.parse.DeleteCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQueryAdapter;
-
-import java.util.List;
 
 public class HabitListActivity extends ListActivity {
 
@@ -62,6 +54,8 @@ public class HabitListActivity extends ListActivity {
         getListView().setAdapter(adapter);
     }
 
+    //sweet jaayssus
+    //working on code
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
