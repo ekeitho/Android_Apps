@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,6 +75,13 @@ public class MainActivity extends ActionBarActivity {
 
             List<String> weekForecast = new ArrayList<String>(Arrays.asList(data));
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+            //the adapter needs to know the context of which it's running
+                //needs to know the layout of our reference
+                    //needs to know how it is displayed by the id by the text view
+                        //then the data which is our 'raw data' example
+            ArrayAdapter<String> weatherAdapter =
+                    new ArrayAdapter<String>(getActivity(), R.layout.list_item_forecast, R.id.list_item_forecast_textview, weekForecast);
 
 
             return rootView;
