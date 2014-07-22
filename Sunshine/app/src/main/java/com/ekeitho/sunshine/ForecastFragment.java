@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,6 +33,7 @@ import java.util.List;
  */
 public class ForecastFragment extends Fragment {
 
+    ArrayAdapter<String> forecastAdapter;
     public ForecastFragment() {
     }
 
@@ -79,7 +79,7 @@ public class ForecastFragment extends Fragment {
         // Now that we have some dummy forecast data, create an ArrayAdapter.
         // The ArrayAdapter will take data from a source (like our dummy forecast) and
         // use it to populate the ListView it's attached to.
-        ArrayAdapter<String> forecastAdapter =
+        forecastAdapter =
                 new ArrayAdapter<String>(
                         getActivity(), // The current context (this activity)
                         R.layout.list_item_forecast, // The name of the layout ID.
@@ -100,8 +100,8 @@ public class ForecastFragment extends Fragment {
         private final String LOG_TAG = FetchWeatherTask.class.getSimpleName();
 
         /* The date/time conversion code is going to be moved outside the asynctask later,
-* so for convenience we're breaking it out into its own method now.
-*/
+        * so for convenience we're breaking it out into its own method now.
+        */
         private String getReadableDateString(long time){
             // Because the API returns a unix timestamp (measured in seconds),
             // it must be converted to milliseconds in order to be converted to valid date.
@@ -275,5 +275,16 @@ public class ForecastFragment extends Fragment {
             //this will happen if there was an error parsing the forecast
             return null;
         }
+
+        @Override
+        protected void onPostExecute(String[] strings) {
+            if(strings != null) {
+               forecastAdapter.clear();
+               for(String dayForecastStr : strings) {
+                   forecastAdapter.add(dayForecastStr);
+               }
+            }
+        }
     }
+
 }
