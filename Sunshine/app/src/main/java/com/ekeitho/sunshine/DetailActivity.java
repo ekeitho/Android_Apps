@@ -1,6 +1,7 @@
 package com.ekeitho.sunshine;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -47,6 +48,10 @@ public class DetailActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
+        }
+        if (id == R.id.view_location_map) {
+            MainActivity jav = new MainActivity();
+            jav.openPreferredLocationInMap();
         }
         return super.onOptionsItemSelected(item);
     }
