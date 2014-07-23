@@ -35,7 +35,7 @@ public class DetailActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.detail, menu);
         return true;
     }
 
@@ -48,10 +48,6 @@ public class DetailActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
-        }
-        if (id == R.id.view_location_map) {
-            MainActivity jav = new MainActivity();
-            jav.openPreferredLocationInMap();
         }
         return super.onOptionsItemSelected(item);
     }

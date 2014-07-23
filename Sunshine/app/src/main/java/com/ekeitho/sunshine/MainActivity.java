@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    protected void openPreferredLocationInMap() {
+    private void openPreferredLocationInMap() {
 
         SharedPreferences sharedPrefs =
                 PreferenceManager.getDefaultSharedPreferences(this);
