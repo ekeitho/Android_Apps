@@ -36,15 +36,6 @@ public class ClockSub extends Activity implements View.OnClickListener, View.OnF
         setContentView(R.layout.clocksub);
         initialize();
 
-        Parse.initialize(this, "Il62bTwt2UPvyLkGGEIBvY9xSYNsPC8EljZbyz0R",
-        "2Qp7n7BWLQgGFxf3J0PFPCWLzcAMnIlGDSp6h87A");
-
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("Leith", "Push pull.");
-        testObject.saveInBackground();
-
-        PushService.setDefaultPushCallback(this, ClockSub.class);
-        ParseInstallation.getCurrentInstallation().saveInBackground();
     }
 
 
