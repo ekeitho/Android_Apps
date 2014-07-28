@@ -14,11 +14,6 @@ import android.widget.TimePicker;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import com.parse.Parse;
-import com.parse.ParseAnalytics;
-import com.parse.ParseObject;
-import com.parse.ParseInstallation;
-import com.parse.PushService;
 
 public class ClockSub extends Activity implements View.OnClickListener, View.OnFocusChangeListener {
 
