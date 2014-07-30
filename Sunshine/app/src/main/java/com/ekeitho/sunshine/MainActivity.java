@@ -33,7 +33,7 @@ public class MainActivity extends ActionBarActivity {
         super.onStart();
     }
 
-    //this is where all user data should be save before onStop
+
     @Override
     protected void onPause() {
         Log.v(TAG, "onPause");

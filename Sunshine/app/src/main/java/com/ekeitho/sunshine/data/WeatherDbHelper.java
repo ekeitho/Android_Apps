@@ -3,6 +3,7 @@ package com.ekeitho.sunshine.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.ekeitho.sunshine.data.WeatherContract.LocationEntry;
 import com.ekeitho.sunshine.data.WeatherContract.WeatherEntry;
