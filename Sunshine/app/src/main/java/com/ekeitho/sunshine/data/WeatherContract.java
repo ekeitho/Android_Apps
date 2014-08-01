@@ -3,7 +3,6 @@ package com.ekeitho.sunshine.data;
 import android.content.ContentUris;
 import android.net.Uri;
 import android.provider.BaseColumns;
-import android.util.Log;
 
 /**
  * Defines table and column names for the weather database.
@@ -61,10 +60,12 @@ public class WeatherContract {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
+        // content://com.ekeitho.sunshine/weather/locationSetting/
         public static Uri buildWeatherLocation(String locationSetting) {
             return CONTENT_URI.buildUpon().appendPath(locationSetting).build();
         }
 
+        // content://com.ekeitho.sunshine/weather/locationSetting?date=startDate
         public static Uri buildWeatherLocationWithStartDate(
                 String locationSetting, String startDate) {
             return CONTENT_URI.buildUpon().appendPath(locationSetting)

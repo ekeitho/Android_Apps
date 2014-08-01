@@ -34,6 +34,9 @@ import java.util.Set;
 public class TestDB extends AndroidTestCase {
 
     public static final String LOG_TAG = TestDB.class.getSimpleName();
+    static public String TEST_CITY_NAME = "North Pole";
+    static public String TEST_LOCATION = "99705";
+    static public String TEST_DATE = "20141205";
 
     public void testCreateDb() throws Throwable {
         mContext.deleteDatabase(WeatherDbHelper.DATABASE_NAME);
@@ -132,6 +135,7 @@ public class TestDB extends AndroidTestCase {
         for (Map.Entry<String, Object> entry : valueSet) {
             String columnName = entry.getKey();
             int idx = valueCursor.getColumnIndex(columnName);
+            Log.v("TAG", columnName);
             assertFalse(idx == -1);
             String expectedValue = entry.getValue().toString();
             assertEquals(expectedValue, valueCursor.getString(idx));
