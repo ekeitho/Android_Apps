@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity$ClockOutput"
+    android:background="@drawable/border"
+    >
+
+    <Button
+        android:id="@+id/clock1"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#fff44f"
+        android:layout_marginLeft="67dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_marginLeft="20dp"
+        android:id="@+id/clock2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/clock1"
+        android:background="#fff44f"
+        android:layout_alignBottom="@id/clock1"
+        />
+
+    <Button
+        android:layout_marginLeft="20dp"
+        android:id="@+id/clock3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/clock2"
+        android:background="#fff44f"
+        android:layout_alignBottom="@id/clock2"
+        />
+
+
+</RelativeLayout>
