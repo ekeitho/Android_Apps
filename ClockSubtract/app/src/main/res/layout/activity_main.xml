@@ -16,6 +16,7 @@
         android:id="@+id/welcome_text"
         android:layout_gravity="center_horizontal"
         android:layout_weight="2.5"
+
         pixlui:typeface="Roboto-Light.ttf"
 
                                                     />
