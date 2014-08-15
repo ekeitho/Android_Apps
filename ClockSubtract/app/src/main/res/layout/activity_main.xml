@@ -8,25 +8,27 @@
 
     <com.neopixl.pixlui.components.textview.TextView
         android:textColor="#f06292"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textAlignment="gravity"
-        android:text="\n\n\n   WELCOME \n         TO \n      CLOCK \nSUBTRACTION"
+        android:textAlignment="center"
+        android:text="TEXT"
+        android:includeFontPadding="false"
         android:id="@+id/welcome_text"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="2.5"
-
+        android:gravity="center"
+        android:layout_weight="4"
         pixlui:typeface="Roboto-Light.ttf"
 
                                                     />
 
 
     <fragment
+        android:id="@+id/frag"
         android:name="com.ekeitho.clocksubtract.ClockOutput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="7.5"
+        android:layout_weight="6"
                                                     />
+
 
 </LinearLayout>
