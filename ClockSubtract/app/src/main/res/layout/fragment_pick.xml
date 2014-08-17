@@ -1,35 +1,27 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#1DE9B6"
-    android:clickable="true"
-    >
+    android:layout_height="wrap_content"
+    android:background="@drawable/border"
+    android:orientation="vertical"
+    android:clickable="true">
 
-    <com.neopixl.pixlui.components.textview.TextView
-        pixlui:typeface="Roboto-BoldItalic.ttf"
-        android:paddingTop="10dp"
-        android:textStyle="bold"
-        android:textColor="#fff44f"
+    <com.neopixl.pixlui.components.edittext.EditText
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
         android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:text="How Many Hours Are You Working?"
+        android:hint="@string/hours_working"
+        android:textColorHint="#fff44f"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/view" />
-
-    <EditText
-        android:gravity="center"
-        android:layout_width="0px"
-        android:layout_alignLeft="@id/view"
-        android:layout_alignRight="@id/view"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/editText"
-        android:layout_below="@+id/view"
-        android:layout_alignStart="@+id/view"
-        android:layout_marginTop="-20dp" />
+        android:imeOptions="actionDone"
+        android:id="@+id/frag_pick"
+        pixlui:typeface="Roboto-Light.ttf"
+
+        />
 
 
 </FrameLayout>

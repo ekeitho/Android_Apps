@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,9 +28,30 @@ public class MainActivity extends FragmentActivity {
     private int flag = 0;
     private Button clock1, clock2, clock3;
     private TextView viewz;
-    private Date date1, date2, date3;
+    private Date date1, date2, date3, differenceDate;
     private Animation animation;
     private SimpleDateFormat formatter;
+
+    private void calculate() {
+        //find minute difference
+        long diff_min = 60 + date2.getMinutes() - date1.getMinutes();
+        //find hour difference
+        long diff_hour = ((diff_min/60)-1) +
+                date2.getHours() - date1.getHours();
+        //this occurs when overlaps from a 12 hour period
+        if( diff_min > 59) {
+            diff_min -= 60;
+        }
+
+        //this output will tell you how much they have worked
+        //now need to figure out the difference form the 8 hour
+        Log.v("Diff", "Hours is: " + diff_hour);
+        Log.v("Diff", "Minutes left is: " + diff_min);
+
+        // 60 000 = one minutes
+        // 3 600 000 = one hour
+    }
+
 
     private void setListenersOnButtons() {
         clock1.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +62,7 @@ public class MainActivity extends FragmentActivity {
                         .addTimePickerDialogHandler(new TimePickerDialogFragment.TimePickerDialogHandler() {
                             @Override
                             public void onDialogTimeSet(int i, int hour, int minutes) {
-                                date1 = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, hour, minutes);
+                                date1 = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, hour, minutes, 0);
                                 flag = 1;
 
                                 viewz.setText("First time set is\n " + formatter.format(date1));
@@ -57,7 +79,8 @@ public class MainActivity extends FragmentActivity {
             public void onClick(View v) {
 
                 if (flag < 1) {
-                    Toast.makeText(getApplicationContext(), "Must choose a time before this button.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),
+                            "Must choose a time before this button.", Toast.LENGTH_SHORT).show();
                 } else {
 
                     TimePickerBuilder builder = new TimePickerBuilder()
@@ -65,8 +88,12 @@ public class MainActivity extends FragmentActivity {
                             .addTimePickerDialogHandler(new TimePickerDialogFragment.TimePickerDialogHandler() {
                                 @Override
                                 public void onDialogTimeSet(int i, int hours, int minutes) {
-                                    date2 = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, hours, minutes);
+                                    date2 = new Date(Calendar.YEAR, Calendar.MONTH,
+                                            Calendar.DAY_OF_MONTH, hours, minutes,0);
+
                                     flag++;
+                                    viewz.setText("Second time set is\n " + formatter.format(date2));
+                                    viewz.startAnimation(animation);
                                 }
                             })
                             .setStyleResId(R.style.BetterPickersDialogFragment_Light);
@@ -89,41 +116,50 @@ public class MainActivity extends FragmentActivity {
                                 @Override
                                 public void onDialogTimeSet(int i, int hours, int minutes) {
                                     date3 = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, hours, minutes);
+                                    viewz.setText("Third time set is\n " + formatter.format(date3));
+                                    viewz.startAnimation(animation);
+
+                                    Fragment frag = new Fragment_Pick();
+                                    FragmentManager fm = getSupportFragmentManager();
+                                    FragmentTransaction transaction = fm.beginTransaction();
+                                    transaction.replace(R.id.frag, frag);
+                                    //transaction.addToBackStack(null);
+                                    transaction.commit();
                                 }
                             })
                             .setStyleResId(R.style.BetterPickersDialogFragment_Light);
                     builder.show();
                 }
-
-                Fragment frag = new Fragment_Pick();
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction transaction = fm.beginTransaction();
-                transaction.replace(R.id.frag, frag);
-                //transaction.add(R.id.frag, frag, "IdentifierTag");
-                transaction.addToBackStack(null);
-                transaction.commit();
             }
+
 
         });
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
+
         //this already contains the fragment layout
-        setContentView(R.layout.activity_main);
+        if (savedInstanceState == null) {
+            setContentView(R.layout.activity_main);
 
         /* view finders */
-        clock1 = (Button) findViewById(R.id.clock1);
-        clock2 = (Button) findViewById(R.id.clock2);
-        clock3 = (Button) findViewById(R.id.clock3);
-        viewz = (TextView) findViewById(R.id.welcome_text);
-        animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
+            clock1 = (Button) findViewById(R.id.clock1);
+            clock2 = (Button) findViewById(R.id.clock2);
+            clock3 = (Button) findViewById(R.id.clock3);
+            viewz = (TextView) findViewById(R.id.welcome_text);
+            animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
 
         /* set up */
-        formatter = new SimpleDateFormat("h:mm a");
-        viewz.startAnimation(animation);
-        setListenersOnButtons();
+            formatter = new SimpleDateFormat("h:mm a");
+            viewz.startAnimation(animation);
+            setListenersOnButtons();
+        } else {
+
+        }
     }
 
 
