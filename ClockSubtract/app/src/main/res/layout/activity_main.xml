@@ -1,6 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,6 +7,7 @@
     android:weightSum="10">
 
     <com.neopixl.pixlui.components.textview.TextView
+        android:id="@+id/welcome_text"
         android:textColor="#f06292"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +15,6 @@
         android:textAlignment="center"
         android:text="@string/welcome"
         android:includeFontPadding="false"
-        android:id="@+id/welcome_text"
         android:gravity="center"
         android:layout_weight="5"
         pixlui:typeface="Roboto-Light.ttf"
@@ -23,14 +22,6 @@
                                                     />
 
 
-    <fragment
-        android:id="@+id/frag"
-        android:name="com.ekeitho.clocksubtract.ClockOutput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
-        tools:layout="@layout/fragment_main"
-        />
 
 
 </LinearLayout>
