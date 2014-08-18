@@ -32,6 +32,7 @@ public class MainActivity extends FragmentActivity {
     private Animation animation;
     private SimpleDateFormat formatter;
 
+
     private void calculate() {
         //find minute difference
         long diff_min = 60 + date2.getMinutes() - date1.getMinutes();
@@ -123,7 +124,7 @@ public class MainActivity extends FragmentActivity {
                                     FragmentManager fm = getSupportFragmentManager();
                                     FragmentTransaction transaction = fm.beginTransaction();
                                     transaction.replace(R.id.frag, frag);
-                                    //transaction.addToBackStack(null);
+                                    transaction.addToBackStack(null);
                                     transaction.commit();
                                 }
                             })

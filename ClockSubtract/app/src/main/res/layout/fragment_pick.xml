@@ -1,6 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:layout_width="match_parent"
+    android:id="@+id/frag_pick_layout"
     android:layout_height="wrap_content"
     android:background="@drawable/border"
     android:orientation="vertical"
