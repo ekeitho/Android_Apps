@@ -55,6 +55,12 @@ public class ClockOutput extends Fragment {
 
 
     private void setListenersOnButtons() {
+
+        Calendar c = (Calendar)Calendar.getInstance();
+        final int gcyear = c.get(Calendar.YEAR);
+        final int gcmonth = c.get(Calendar.MONTH);
+        final int gcday = c.get(Calendar.DAY_OF_MONTH);
+
         clock1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +69,7 @@ public class ClockOutput extends Fragment {
                         .addTimePickerDialogHandler(new TimePickerDialogFragment.TimePickerDialogHandler() {
                             @Override
                             public void onDialogTimeSet(int i, int hour, int minutes) {
-                                date1 = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, hour, minutes, 0);
+                                date1 = new Date(gcyear, gcmonth, gcday, hour, minutes, 0);
                                 flag = 1;
                                 activityCommunicator.passDateStrings("First time set is\n", date1);
 
@@ -88,8 +94,7 @@ public class ClockOutput extends Fragment {
                             .addTimePickerDialogHandler(new TimePickerDialogFragment.TimePickerDialogHandler() {
                                 @Override
                                 public void onDialogTimeSet(int i, int hours, int minutes) {
-                                    date2 = new Date(Calendar.YEAR, Calendar.MONTH,
-                                            Calendar.DAY_OF_MONTH, hours, minutes, 0);
+                                    date2 = new Date(gcyear, gcmonth, gcday, hours, minutes, 0);
 
                                     flag++;
                                     activityCommunicator.passDateStrings("Second time set is\n", date2);
@@ -114,7 +119,7 @@ public class ClockOutput extends Fragment {
                             .addTimePickerDialogHandler(new TimePickerDialogFragment.TimePickerDialogHandler() {
                                 @Override
                                 public void onDialogTimeSet(int i, int hours, int minutes) {
-                                    date3 = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, hours, minutes);
+                                    date3 = new Date(gcyear, gcmonth, gcday, hours, minutes);
                                     activityCommunicator.passDateStrings("Third time set is\n", date3);
                                     //maybe need to check null dates further on in development
                                     activityCommunicator.passDates(date1, date2, date3);

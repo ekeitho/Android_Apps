@@ -22,7 +22,6 @@ import android.widget.TextView;
 public class Fragment_Pick extends Fragment {
 
     private Fragment frag = this;
-    private Double dub;
     private ActivityCommunicator activityCommunicator;
 
     public Fragment_Pick() {
@@ -49,8 +48,7 @@ public class Fragment_Pick extends Fragment {
                             act.getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 
-                    dub = Double.parseDouble(editText.getText().toString());
-                    activityCommunicator.passDoubleToActivity(dub);
+                    activityCommunicator.passIntToActivity(Integer.parseInt(editText.getText().toString()));
                     activityCommunicator.calculate();
 
                     act.getSupportFragmentManager().beginTransaction()

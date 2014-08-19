@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import com.neopixl.pixlui.components.textview.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends FragmentActivity implements ActivityCommunicator{
@@ -18,12 +19,12 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
     private TextView view;
     private SimpleDateFormat formatter;
     private Animation animation;
-    private Double dub;
+    private int hours;
     private Date date1, date2, date3;
 
     @Override
-    public void passDoubleToActivity(double hours_worked) {
-        dub = hours_worked;
+    public void passIntToActivity(int hours_worked) {
+        hours = hours_worked;
         Log.v("Hours Worked", "This is what you entered " + hours_worked);
     }
 
@@ -32,10 +33,8 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         /* set up */
-        formatter = new SimpleDateFormat("h:mm a");
+        formatter = new SimpleDateFormat("MMM d, h:mm a");
         view = (TextView) findViewById(R.id.welcome_text);
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
         view.startAnimation(animation);
@@ -77,23 +76,42 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
 
     @Override
     public void calculate() {
+        // numbers based on the Date() times
+        // 60 000 = one minutes
+        // 3 600 000 = one hour
+        int hour_date_time = 3600000;
+        int minute_date_time = 60000;
+
         //find minute difference
-        long diff_min = 60 + date2.getMinutes() - date1.getMinutes();
+        int diff_min = 60 + date2.getMinutes() - date1.getMinutes();
         //find hour difference
-        long diff_hour = ((diff_min / 60) - 1) +
+        int diff_hour = ((diff_min / 60) - 1) +
                 date2.getHours() - date1.getHours();
         //this occurs when overlaps from a 12 hour period
         if (diff_min > 59) {
             diff_min -= 60;
         }
 
-        //this output will tell you how much they have worked
-        //now need to figure out the difference form the 8 hour
-        Log.v("Diff", "Hours is: " + diff_hour);
-        Log.v("Diff", "Minutes left is: " + diff_min);
+        //subtracts user input of hours needed to work to what they've already currently worked
+        int sub = hours * hour_date_time -
+                (diff_hour * hour_date_time + diff_min * minute_date_time);
 
-        // 60 000 = one minutes
-        // 3 600 000 = one hour
+        //finds from the subtraction of how many hours needed to work
+        int hours_left = sub/hour_date_time;
+        int minutes_left = (sub - (hours_left * hour_date_time))/minute_date_time;
+        Log.v("Diff", "Hours added " + hours_left + " minutes added " + minutes_left);
+
+
+        Date final_date = new Date(Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH),
+                date3.getHours() + hours_left,
+                date3.getMinutes() + minutes_left);
+
+
+        view.setText("You need to clock out at\n " + formatter.format(final_date));
+        view.startAnimation(animation);
+
     }
 
     @Override
