@@ -10,7 +10,9 @@ import android.view.animation.AnimationUtils;
 
 import com.neopixl.pixlui.components.textview.TextView;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -21,6 +23,7 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
     private Animation animation;
     private int hours;
     private Date date1, date2, date3;
+    private ArrayList<Date> date_list = new ArrayList<Date>();
 
     @Override
     public void passIntToActivity(int hours_worked) {
@@ -68,10 +71,8 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
     }
 
     @Override
-    public void passDates(Date date_1, Date date_2, Date date_3) {
-        date1 = date_1;
-        date2 = date_2;
-        date3 = date_3;
+    public void addDates(Date date, int index) {
+        date_list.add(index, date);
     }
 
     @Override
@@ -79,6 +80,12 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
         // numbers based on the Date() times
         // 60 000 = one minutes
         // 3 600 000 = one hour
+
+        Date date1 = date_list.get(0);
+        Date date2 = date_list.get(1);
+        Date date3 = date_list.get(2);
+
+
         int hour_date_time = 3600000;
         int minute_date_time = 60000;
 
@@ -111,6 +118,9 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
 
         view.setText("You need to clock out at\n " + formatter.format(final_date));
         view.startAnimation(animation);
+
+        //empty list for next iteration if necessary
+        date_list.clear();
 
     }
 

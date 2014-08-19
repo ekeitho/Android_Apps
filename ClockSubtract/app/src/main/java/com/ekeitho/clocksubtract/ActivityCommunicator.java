@@ -4,7 +4,8 @@ import java.util.Date;
 
 public interface ActivityCommunicator {
 
-    public void passDates(Date date1, Date date2, Date date3);
+    //use the spot in case the user goes back and changes past clock before calculation
+    public void addDates(Date date, int index);
     public void passDateStrings(String someValue, Date date);
     public void passIntToActivity(int hours_worked);
     public void calculate();
