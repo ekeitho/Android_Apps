@@ -51,6 +51,8 @@ public class Fragment_Pick extends Fragment {
                     imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 
                     dub = Double.parseDouble(editText.getText().toString());
+                    activityCommunicator.passDoubleToActivity(dub);
+                    activityCommunicator.calculate();
 
                     act.getSupportFragmentManager().beginTransaction()
                             .remove(frag)
@@ -76,9 +78,4 @@ public class Fragment_Pick extends Fragment {
         activityCommunicator = (ActivityCommunicator) getActivity();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        activityCommunicator.passDoubleToActivity(dub);
-    }
 }
