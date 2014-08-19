@@ -2,6 +2,7 @@ package com.ekeitho.clocksubtract;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.Animation;
@@ -17,6 +18,13 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
     private TextView view;
     private SimpleDateFormat formatter;
     private Animation animation;
+    private Double dub;
+
+    @Override
+    public void passDoubleToActivity(double hours_worked) {
+        dub = hours_worked;
+        Log.v("Hours Worked", "This is what you entered " + hours_worked);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +67,7 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
     }
 
     @Override
-    public void passDataToActivity(String someValue, Date date) {
+    public void passDatesToActivity(String someValue, Date date) {
         view.setText(someValue + formatter.format(date));
         view.startAnimation(animation);
     }

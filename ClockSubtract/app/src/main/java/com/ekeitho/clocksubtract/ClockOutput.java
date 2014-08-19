@@ -1,33 +1,31 @@
 package com.ekeitho.clocksubtract;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+
 import com.doomonafireball.betterpickers.timepicker.TimePickerBuilder;
 import com.doomonafireball.betterpickers.timepicker.TimePickerDialogFragment;
 
 import java.util.Calendar;
 import java.util.Date;
 
-public class ClockOutput extends Fragment {
+public class ClockOutput extends Fragment implements FragCommunicator{
 
 
     private int flag = 0;
     private Button clock1, clock2, clock3;
     private Date date1, date2, date3, differenceDate;
-    private FragmentActivity frag;
-    private Context context;
     private ActivityCommunicator activityCommunicator;
+    private double work_hours;
 
     public ClockOutput() {
 
@@ -36,8 +34,7 @@ public class ClockOutput extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        context = getActivity();
-        activityCommunicator = (ActivityCommunicator)context;
+        activityCommunicator = (ActivityCommunicator) getActivity();
     }
 
     @Override
@@ -51,7 +48,6 @@ public class ClockOutput extends Fragment {
         clock3 = (Button) view.findViewById(R.id.clock3);
 
         setListenersOnButtons();
-
 
         return view;
     }
@@ -87,7 +83,7 @@ public class ClockOutput extends Fragment {
                             public void onDialogTimeSet(int i, int hour, int minutes) {
                                 date1 = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, hour, minutes, 0);
                                 flag = 1;
-                                ((MainActivity)context).passDataToActivity("First time set is\n", date1);
+                                activityCommunicator.passDatesToActivity("First time set is\n", date1);
 
                             }
                         })
@@ -114,7 +110,7 @@ public class ClockOutput extends Fragment {
                                             Calendar.DAY_OF_MONTH, hours, minutes, 0);
 
                                     flag++;
-                                    ((MainActivity)context).passDataToActivity("Second time set is\n", date1);
+                                    activityCommunicator.passDatesToActivity("Second time set is\n", date2);
                                 }
                             })
                             .setStyleResId(R.style.BetterPickersDialogFragment_Light);
@@ -137,14 +133,13 @@ public class ClockOutput extends Fragment {
                                 @Override
                                 public void onDialogTimeSet(int i, int hours, int minutes) {
                                     date3 = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, hours, minutes);
-                                    ((MainActivity)context).passDataToActivity("Third time set is\n", date1);
+                                    activityCommunicator.passDatesToActivity("Third time set is\n", date3);
 
                                     Fragment frag = new Fragment_Pick();
                                     FragmentManager fm = getActivity().getSupportFragmentManager();
-                                    FragmentTransaction transaction = fm.beginTransaction();
-                                    transaction.replace(R.id.frag, frag);
-                                    //transaction.addToBackStack(null);
-                                    transaction.commit();
+                                    fm.beginTransaction()
+                                        .replace(R.id.frag, frag)
+                                        .commit();
                                 }
                             })
                             .setStyleResId(R.style.BetterPickersDialogFragment_Light);
@@ -154,6 +149,9 @@ public class ClockOutput extends Fragment {
 
 
         });
+
+
+
     }
 
     @Override
@@ -162,4 +160,8 @@ public class ClockOutput extends Fragment {
 
     }
 
+    @Override
+    public void fragCommunicator(double hours) {
+        work_hours = hours;
+    }
 }
