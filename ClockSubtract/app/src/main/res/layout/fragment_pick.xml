@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:clickable="true">
 
+
     <com.neopixl.pixlui.components.edittext.EditText
         android:layout_marginTop="5dp"
         android:textAlignment="center"
@@ -16,13 +17,11 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="numberSigned"
         android:ems="10"
         android:imeOptions="actionDone"
         android:id="@+id/frag_pick"
         pixlui:typeface="Roboto-Light.ttf"
-
         />
-
 
 </FrameLayout>

@@ -6,8 +6,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import com.neopixl.pixlui.components.edittext.EditText;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,11 +21,9 @@ import android.widget.TextView;
  */
 public class Fragment_Pick extends Fragment {
 
-    private Fragment frag = this;
     private ActivityCommunicator activityCommunicator;
 
     public Fragment_Pick() {
-
     }
 
     @Override
@@ -42,24 +38,27 @@ public class Fragment_Pick extends Fragment {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
 
-                    //this will get the current view when the user is in edit mode or able to input
+                    /* this will get the current view when
+                       the user is in edit mode or able to input */
                     InputMethodManager imm = (InputMethodManager)
                             getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    //then will close the keyboard by this method
+                    /* then will close the keyboard by this method */
                     imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 
-                    //passes information to the MainActivity based on the
-                    //user's response of hours needed to work
+                    /* passes information to the MainActivity based on the
+                       user's response of hours needed to work */
                     activityCommunicator
                             .passIntToActivity(Integer.parseInt(editText.getText().toString()));
-                    //then signals the callback in the activity to calculate when the user
-                    //needs to clock out
-                    activityCommunicator.calculate();
+                    /* then signals the callback in the activity to calculate when the user
+                       needs to clock out */
+                    activityCommunicator
+                            .calculate();
+                    /* switches back to the first fragment after completion */
+                    activityCommunicator
+                            .switchFragment(0);
 
-                    //code to close the edit text fragment back to the buttons
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .remove(frag)
-                            .commit();
+                    /* sets the hint back to the edit text for next time */
+                    editText.setText(null);
 
                     return true;
                 }

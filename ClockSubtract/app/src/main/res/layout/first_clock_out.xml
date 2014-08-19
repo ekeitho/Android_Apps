@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/first_clock_out"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_weight="5"
+    android:orientation="vertical"
+    android:background="@drawable/border"
+    tools:ignore="MergeRootFrame">
+
+
+    <com.neopixl.pixlui.components.textview.TextView
+        xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:text="When was your first clock out?"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pixlui:typeFace="RobotoCondensed-Bold.ttf"
+        android:paddingBottom="10dp"
+        />
+
+    <Button
+        android:id="@+id/first_clock_out_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#fff44f" />
+
+
+
+
+</LinearLayout>

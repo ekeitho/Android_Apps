@@ -2,34 +2,35 @@ package com.ekeitho.clocksubtract;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
+import com.doomonafireball.betterpickers.radialtimepicker.RadialPickerLayout;
+import com.doomonafireball.betterpickers.radialtimepicker.RadialTimePickerDialog;
 import com.neopixl.pixlui.components.textview.TextView;
 
-import java.lang.reflect.Array;
+import org.joda.time.DateTime;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class MainActivity extends FragmentActivity implements ActivityCommunicator{
+public class MainActivity extends FragmentActivity implements ActivityCommunicator {
 
     private TextView view;
     private SimpleDateFormat formatter;
-    private Animation animation;
-    private int hours;
-    private Date date1, date2, date3;
+    private Animation animation_fade, animation_slide_right;
     private ArrayList<Date> date_list = new ArrayList<Date>();
+    private ViewPager viewPager;
+    private MultipleViewFragments multipleViewFragments;
+    private int gcyear, gcmonth, gcday, frag_num = 0, flag = 0, hours;
 
-    @Override
-    public void passIntToActivity(int hours_worked) {
-        hours = hours_worked;
-        Log.v("Hours Worked", "This is what you entered " + hours_worked);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +40,26 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
         /* set up */
         formatter = new SimpleDateFormat("MMM d, h:mm a");
         view = (TextView) findViewById(R.id.welcome_text);
-        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
-        view.startAnimation(animation);
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new ClockOutput())
-                    .commit();
-        }
+        /* sets up the swipe fragment views */
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        multipleViewFragments = new MultipleViewFragments(getSupportFragmentManager());
+        viewPager.setAdapter(multipleViewFragments);
+
+        /* animation set up */
+        animation_slide_right =
+                AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_right);
+        animation_fade =
+                AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+
+        /* fade in the title screen */
+        view.startAnimation(animation_fade);
+
+        /* set up for dates to be used */
+        Calendar calendar = Calendar.getInstance();
+        gcyear = calendar.get(Calendar.YEAR);
+        gcmonth = calendar.get(Calendar.MONTH);
+        gcday = calendar.get(Calendar.DAY_OF_MONTH);
 
     }
 
@@ -70,11 +83,75 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
     public void addDates(Date date, int index) {
         date_list.add(index, date);
     }
 
+    @Override
+    public void listenerClocks(final String order, final int index) {
+
+        if (flag != index) {
+            Log.v("Index", "Index is " + index + " and flag is " + flag);
+            Toast.makeText(getApplicationContext(),
+                    "Swipe left to choose clock in correct order.", Toast.LENGTH_SHORT).show();
+        } else {
+            flag++;
+
+            /* using for radial picker time clocks preset times */
+            DateTime now = DateTime.now();
+
+            RadialTimePickerDialog timePickerDialog = RadialTimePickerDialog
+                    .newInstance(new RadialTimePickerDialog.OnTimeSetListener() {
+
+                        @Override
+                        public void onTimeSet(RadialPickerLayout radialPickerLayout,
+                                              int hours, int minutes) {
+                            Date date = new Date(gcyear, gcmonth, gcday, hours, minutes, 0);
+                            frag_num++;
+                            passDateStrings(order + " time set is\n", date);
+                            //used this method to add to an arrayList
+                            //for efficiency and to be able to use this method for different amounts
+                            //of clocks without repetition usage
+                            addDates(date, index);
+
+                            switch (frag_num) {
+                                case 1:
+                                    switchFragment(1);
+                                    break;
+                                case 2:
+                                    switchFragment(2);
+                                    break;
+                                case 3:
+                                    frag_num = 0;
+                                    flag = 0;
+                                    switchFragment(3);
+                                    break;
+                            }
+                        }
+                    }, now.getHourOfDay(), now.getMinuteOfHour(), false);
+            timePickerDialog.show(getSupportFragmentManager(), "ClockOutput");
+        }
+    }
+
+
+    public void passDateStrings(String someValue, Date date) {
+        view.setText(someValue + formatter.format(date));
+        view.startAnimation(animation_fade);
+    }
+
+    @Override
+    public void switchFragment(int index) {
+        viewPager.setCurrentItem(index);
+        //viewPager.setAnimation(animation_slide_right);
+    }
+
+    @Override
+    public void passIntToActivity(int hours_worked) {
+        hours = hours_worked;
+        Log.v("Hours Worked", "This is what you entered " + hours_worked);
+    }
+
+    /* algorithm for finding the time need to clock out */
     @Override
     public void calculate() {
         // numbers based on the Date() times
@@ -104,8 +181,8 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
                 (diff_hour * hour_date_time + diff_min * minute_date_time);
 
         //finds from the subtraction of how many hours needed to work
-        int hours_left = sub/hour_date_time;
-        int minutes_left = (sub - (hours_left * hour_date_time))/minute_date_time;
+        int hours_left = sub / hour_date_time;
+        int minutes_left = (sub - (hours_left * hour_date_time)) / minute_date_time;
         Log.v("Diff", "Hours added " + hours_left + " minutes added " + minutes_left);
 
 
@@ -117,16 +194,10 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
 
 
         view.setText("You need to clock out at\n " + formatter.format(final_date));
-        view.startAnimation(animation);
+        view.startAnimation(animation_fade);
 
         //empty list for next iteration if necessary
         date_list.clear();
-
     }
 
-    @Override
-    public void passDateStrings(String someValue, Date date) {
-        view.setText(someValue + formatter.format(date));
-        view.startAnimation(animation);
-    }
 }
