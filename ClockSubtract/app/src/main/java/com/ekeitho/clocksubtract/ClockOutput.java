@@ -52,25 +52,7 @@ public class ClockOutput extends Fragment implements FragCommunicator{
         return view;
     }
 
-    private void calculate() {
-        //find minute difference
-        long diff_min = 60 + date2.getMinutes() - date1.getMinutes();
-        //find hour difference
-        long diff_hour = ((diff_min / 60) - 1) +
-                date2.getHours() - date1.getHours();
-        //this occurs when overlaps from a 12 hour period
-        if (diff_min > 59) {
-            diff_min -= 60;
-        }
 
-        //this output will tell you how much they have worked
-        //now need to figure out the difference form the 8 hour
-        Log.v("Diff", "Hours is: " + diff_hour);
-        Log.v("Diff", "Minutes left is: " + diff_min);
-
-        // 60 000 = one minutes
-        // 3 600 000 = one hour
-    }
 
     private void setListenersOnButtons() {
         clock1.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +65,7 @@ public class ClockOutput extends Fragment implements FragCommunicator{
                             public void onDialogTimeSet(int i, int hour, int minutes) {
                                 date1 = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, hour, minutes, 0);
                                 flag = 1;
-                                activityCommunicator.passDatesToActivity("First time set is\n", date1);
+                                activityCommunicator.passDateStrings("First time set is\n", date1);
 
                             }
                         })
@@ -110,7 +92,7 @@ public class ClockOutput extends Fragment implements FragCommunicator{
                                             Calendar.DAY_OF_MONTH, hours, minutes, 0);
 
                                     flag++;
-                                    activityCommunicator.passDatesToActivity("Second time set is\n", date2);
+                                    activityCommunicator.passDateStrings("Second time set is\n", date2);
                                 }
                             })
                             .setStyleResId(R.style.BetterPickersDialogFragment_Light);
@@ -133,7 +115,8 @@ public class ClockOutput extends Fragment implements FragCommunicator{
                                 @Override
                                 public void onDialogTimeSet(int i, int hours, int minutes) {
                                     date3 = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, hours, minutes);
-                                    activityCommunicator.passDatesToActivity("Third time set is\n", date3);
+                                    activityCommunicator.passDateStrings("Third time set is\n", date3);
+                                    activityCommunicator.passDates(date1, date2, date3);
 
                                     Fragment frag = new Fragment_Pick();
                                     FragmentManager fm = getActivity().getSupportFragmentManager();

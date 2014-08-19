@@ -19,6 +19,7 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
     private SimpleDateFormat formatter;
     private Animation animation;
     private Double dub;
+    private Date date1, date2, date3;
 
     @Override
     public void passDoubleToActivity(double hours_worked) {
@@ -44,6 +45,7 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
                     .add(R.id.container, new ClockOutput())
                     .commit();
         }
+
     }
 
 
@@ -67,7 +69,35 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
     }
 
     @Override
-    public void passDatesToActivity(String someValue, Date date) {
+    public void passDates(Date date_1, Date date_2, Date date_3) {
+        date1 = date_1;
+        date2 = date_2;
+        date3 = date_3;
+    }
+
+    @Override
+    public void calculate() {
+        //find minute difference
+        long diff_min = 60 + date2.getMinutes() - date1.getMinutes();
+        //find hour difference
+        long diff_hour = ((diff_min / 60) - 1) +
+                date2.getHours() - date1.getHours();
+        //this occurs when overlaps from a 12 hour period
+        if (diff_min > 59) {
+            diff_min -= 60;
+        }
+
+        //this output will tell you how much they have worked
+        //now need to figure out the difference form the 8 hour
+        Log.v("Diff", "Hours is: " + diff_hour);
+        Log.v("Diff", "Minutes left is: " + diff_min);
+
+        // 60 000 = one minutes
+        // 3 600 000 = one hour
+    }
+
+    @Override
+    public void passDateStrings(String someValue, Date date) {
         view.setText(someValue + formatter.format(date));
         view.startAnimation(animation);
     }
