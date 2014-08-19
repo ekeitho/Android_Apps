@@ -19,17 +19,20 @@ import org.joda.time.DateTime;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 
 public class MainActivity extends FragmentActivity implements ActivityCommunicator {
 
-    private TextView view;
+    private TextView view, sub_view;
     private SimpleDateFormat formatter;
-    private Animation animation_fade, animation_slide_right;
-    private ArrayList<Date> date_list = new ArrayList<Date>();
+    private Animation animation_fade;
     private ViewPager viewPager;
     private MultipleViewFragments multipleViewFragments;
     private int gcyear, gcmonth, gcday, frag_num = 0, flag = 0, hours;
+    private HashMap<String, Date> past_clocks = new HashMap<String, Date>();
+
 
 
     @Override
@@ -40,6 +43,7 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
         /* set up */
         formatter = new SimpleDateFormat("MMM d, h:mm a");
         view = (TextView) findViewById(R.id.welcome_text);
+        sub_view = (TextView) findViewById(R.id.past_choices_textview);
 
         /* sets up the swipe fragment views */
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -47,8 +51,6 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
         viewPager.setAdapter(multipleViewFragments);
 
         /* animation set up */
-        animation_slide_right =
-                AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_right);
         animation_fade =
                 AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
 
@@ -83,14 +85,29 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
         return super.onOptionsItemSelected(item);
     }
 
-    public void addDates(Date date, int index) {
-        date_list.add(index, date);
+    public void addDates(Date date, String key) {
+        past_clocks.put(key, date);
+    }
+
+
+    private void setPastTimes(int index) {
+
+        StringBuilder builder = new StringBuilder();
+        /* retrieves from the map and sorts it out for appropriate view: first, second, third */
+        ArrayList<String> list = new ArrayList<String>(past_clocks.keySet());
+        Collections.sort(list);
+
+        for( String value : list) {
+            builder.append(value + ": " + formatter.format(past_clocks.get(value)) + "\n");
+        }
+        sub_view.setText(builder.toString());
+
     }
 
     @Override
     public void listenerClocks(final String order, final int index) {
 
-        if (flag != index) {
+        if (flag < index) {
             Log.v("Index", "Index is " + index + " and flag is " + flag);
             Toast.makeText(getApplicationContext(),
                     "Swipe left to choose clock in correct order.", Toast.LENGTH_SHORT).show();
@@ -107,14 +124,14 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
                         public void onTimeSet(RadialPickerLayout radialPickerLayout,
                                               int hours, int minutes) {
                             Date date = new Date(gcyear, gcmonth, gcday, hours, minutes, 0);
-                            frag_num++;
                             passDateStrings(order + " time set is\n", date);
                             //used this method to add to an arrayList
                             //for efficiency and to be able to use this method for different amounts
                             //of clocks without repetition usage
-                            addDates(date, index);
+                            addDates(date, order);
+                            setPastTimes(index);
 
-                            switch (frag_num) {
+                            switch (index+1) {
                                 case 1:
                                     switchFragment(1);
                                     break;
@@ -122,7 +139,6 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
                                     switchFragment(2);
                                     break;
                                 case 3:
-                                    frag_num = 0;
                                     flag = 0;
                                     switchFragment(3);
                                     break;
@@ -142,13 +158,11 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
     @Override
     public void switchFragment(int index) {
         viewPager.setCurrentItem(index);
-        //viewPager.setAnimation(animation_slide_right);
     }
 
     @Override
     public void passIntToActivity(int hours_worked) {
         hours = hours_worked;
-        Log.v("Hours Worked", "This is what you entered " + hours_worked);
     }
 
     /* algorithm for finding the time need to clock out */
@@ -158,9 +172,9 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
         // 60 000 = one minutes
         // 3 600 000 = one hour
 
-        Date date1 = date_list.get(0);
-        Date date2 = date_list.get(1);
-        Date date3 = date_list.get(2);
+        Date date1 = past_clocks.get("First");
+        Date date2 = past_clocks.get("Second");
+        Date date3 = past_clocks.get("Third");
 
 
         int hour_date_time = 3600000;
@@ -197,7 +211,8 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
         view.startAnimation(animation_fade);
 
         //empty list for next iteration if necessary
-        date_list.clear();
+        past_clocks.clear();
+        sub_view.setText(null);
     }
 
 }
