@@ -18,7 +18,7 @@ import com.doomonafireball.betterpickers.timepicker.TimePickerDialogFragment;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ClockOutput extends Fragment implements FragCommunicator{
+public class ClockOutput extends Fragment {
 
 
     private int flag = 0;
@@ -116,6 +116,7 @@ public class ClockOutput extends Fragment implements FragCommunicator{
                                 public void onDialogTimeSet(int i, int hours, int minutes) {
                                     date3 = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, hours, minutes);
                                     activityCommunicator.passDateStrings("Third time set is\n", date3);
+                                    //maybe need to check null dates further on in development
                                     activityCommunicator.passDates(date1, date2, date3);
 
                                     Fragment frag = new Fragment_Pick();
@@ -143,8 +144,4 @@ public class ClockOutput extends Fragment implements FragCommunicator{
 
     }
 
-    @Override
-    public void fragCommunicator(double hours) {
-        work_hours = hours;
-    }
 }
