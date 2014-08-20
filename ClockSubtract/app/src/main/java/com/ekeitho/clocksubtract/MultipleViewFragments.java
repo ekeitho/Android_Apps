@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 /**
  * Allow for multiple view in fragments.
  */
+
 public class MultipleViewFragments extends FragmentPagerAdapter {
 
 
