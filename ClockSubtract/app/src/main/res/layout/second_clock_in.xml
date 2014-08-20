@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/second_clock_in"
     android:layout_width="match_parent"
@@ -11,7 +12,6 @@
 
 
     <com.neopixl.pixlui.components.textview.TextView
-        xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:text="When did you clock back in?"
@@ -21,7 +21,10 @@
         android:paddingBottom="10dp"
         />
 
-    <Button
+    <com.neopixl.pixlui.components.button.Button
+        android:text="Clock-In"
+        android:textSize="12sp"
+        pixlui:typeFace="Roboto-Thin.ttf"
         android:id="@+id/second_clock_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

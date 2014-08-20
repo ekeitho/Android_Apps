@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import com.neopixl.pixlui.components.button.Button;
 
 /**
  *  First fragment for when the user gets into work or first clock in.

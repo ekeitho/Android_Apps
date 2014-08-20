@@ -25,15 +25,17 @@ import java.util.HashMap;
 
 public class MainActivity extends FragmentActivity implements ActivityCommunicator {
 
+    private int gcyear, gcmonth, gcday, frag_num = 0, flag = 0, hours;
     private TextView view, sub_view;
     private SimpleDateFormat formatter;
     private Animation animation_fade;
     private ViewPager viewPager;
-    private MultipleViewFragments multipleViewFragments;
-    private int gcyear, gcmonth, gcday, frag_num = 0, flag = 0, hours;
     private HashMap<String, Date> past_clocks = new HashMap<String, Date>();
 
-
+    @Override
+    public HashMap<String, Date> getMap() {
+        return past_clocks;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
 
         /* sets up the swipe fragment views */
         viewPager = (ViewPager) findViewById(R.id.pager);
-        multipleViewFragments = new MultipleViewFragments(getSupportFragmentManager());
+        MultipleViewFragments multipleViewFragments = new MultipleViewFragments(getSupportFragmentManager());
         viewPager.setAdapter(multipleViewFragments);
 
         /* animation set up */
@@ -62,9 +64,28 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
         gcyear = calendar.get(Calendar.YEAR);
         gcmonth = calendar.get(Calendar.MONTH);
         gcday = calendar.get(Calendar.DAY_OF_MONTH);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        view.setText(savedInstanceState.getString("Title"));
+        sub_view.setText(savedInstanceState.getString("Past_Picks"));
+        past_clocks = (HashMap<String, Date>) savedInstanceState.getSerializable("Date_Map");
+        hours = savedInstanceState.getInt("HOURS");
+        flag = savedInstanceState.getInt("FLAG");
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("Title", view.getText().toString());
+        outState.putString("Past_Picks", sub_view.getText().toString());
+        outState.putSerializable("Date_Map", past_clocks);
+        outState.putInt("HOURS", hours);
+        outState.putInt("FLAG", flag);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -97,7 +118,7 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
         ArrayList<String> list = new ArrayList<String>(past_clocks.keySet());
         Collections.sort(list);
 
-        for( String value : list) {
+        for (String value : list) {
             builder.append(value + ": " + formatter.format(past_clocks.get(value)) + "\n");
         }
         sub_view.setText(builder.toString());
@@ -131,7 +152,7 @@ public class MainActivity extends FragmentActivity implements ActivityCommunicat
                             addDates(date, order);
                             setPastTimes(index);
 
-                            switch (index+1) {
+                            switch (index + 1) {
                                 case 1:
                                     switchFragment(1);
                                     break;

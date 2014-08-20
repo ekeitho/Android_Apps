@@ -18,7 +18,6 @@
         android:gravity="center"
         android:layout_weight="4"
         pixlui:typeface="Roboto-Light.ttf"
-
                                                     />
 
     <com.neopixl.pixlui.components.textview.TextView

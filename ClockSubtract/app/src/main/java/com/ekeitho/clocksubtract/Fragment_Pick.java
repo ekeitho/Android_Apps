@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This class is used to ask the user how many hours he'll be working.
@@ -33,38 +34,46 @@ public class Fragment_Pick extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pick, container, false);
 
         final EditText editText = (EditText) view.findViewById(R.id.frag_pick);
-        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
+
+
+            editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
 
                     /* this will get the current view when
                        the user is in edit mode or able to input */
-                    InputMethodManager imm = (InputMethodManager)
-                            getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        InputMethodManager imm = (InputMethodManager)
+                                getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     /* then will close the keyboard by this method */
-                    imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+                        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 
+                        if( activityCommunicator.getMap().size() != 3) {
+                            Toast.makeText(getActivity(),
+                                    "Make sure to do all clock-ins/out.", Toast.LENGTH_SHORT).show();
+                        } else {
                     /* passes information to the MainActivity based on the
                        user's response of hours needed to work */
-                    activityCommunicator
-                            .passIntToActivity(Integer.parseInt(editText.getText().toString()));
+                            activityCommunicator
+                                    .passIntToActivity(Integer.parseInt(editText.getText().toString()));
                     /* then signals the callback in the activity to calculate when the user
                        needs to clock out */
-                    activityCommunicator
-                            .calculate();
+                            activityCommunicator
+                                    .calculate();
                     /* switches back to the first fragment after completion */
-                    activityCommunicator
-                            .switchFragment(0);
+                            activityCommunicator
+                                    .switchFragment(0);
 
                     /* sets the hint back to the edit text for next time */
-                    editText.setText(null);
+                            editText.setText(null);
 
-                    return true;
+                            return true;
+                        }
+                    }
+                    return false;
                 }
-                return false;
-            }
-        });
+
+            });
 
         return view;
     }
