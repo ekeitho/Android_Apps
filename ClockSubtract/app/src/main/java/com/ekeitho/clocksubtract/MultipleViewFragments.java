@@ -17,7 +17,7 @@ public class MultipleViewFragments extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int index) {
-        switch(index) {
+        switch (index) {
             case 0:
                 return new First_Clock_In();
             case 1:
