@@ -20,6 +20,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.example.android.sunshine.app.data.WeatherContract;
 
@@ -96,6 +97,7 @@ public class SettingsActivity extends PreferenceActivity
                 preference.setSummary(listPreference.getEntries()[prefIndex]);
             }
         } else {
+            Log.v("HMM", "HMM");
             // For other preferences, set the summary to the value's simple string representation.
             preference.setSummary(stringValue);
         }
